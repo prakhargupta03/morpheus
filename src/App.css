@@ -20,9 +20,12 @@
   margin: 0px 10px;
   flex:1;
   display: flex;
+  flex-wrap: wrap;
 }
 .sender-receiver div{
-  flex:1
+  flex:1;
+  min-width: 400px;
+  margin:10px auto;
 }
 svg{
   fill:black;
@@ -39,24 +42,27 @@ svg:hover{
   margin: 10px;
   flex:1;
   display: flex;
+  flex-wrap: wrap
 }
 
-.add-money input{
+input{
   border:none;
   padding: 8px;
   border-radius: 5px;
   margin-right:10px; 
-  min-width: 250px
+  margin-left:10px; 
+  max-width: 250px
 }
 
 .deal{
-  background-color: #e0e0e0;
+  background-color: #DAE0E2;
   padding: 10px 0px;
   border-radius: 5px;
   margin: 10px;
   flex:1;
   flex-direction: row;
   display:flex;
+  flex-wrap: wrap;
 }
 
 .deal .issue{
@@ -65,13 +71,16 @@ svg:hover{
   flex-direction: column;
   background-color: #fff;
   border-radius: 5px;
-  margin-left: 20px;
+  margin: 10px 10px 10px 20px;
   padding: 10px;
-  min-height: 200px
+  min-height: 200px;
+  min-width:400px;
 }
+
 .issue div{
   flex:1
 }
+
 button{
   width:150px;
   background: #E71C23;
@@ -89,6 +98,118 @@ button:hover{
   background: #f4511e;
 }
 
-.deal-options{
-  flex:8
+@media(max-width:850px){
+  .add-money{
+    flex-direction: column
+  }
+}
+
+@media(max-width:620px){
+  .hide1{
+    display: none
+  }
+  .deal-options2 div{
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+}
+
+.deal .deal-options{
+  flex:8;
+  display:flex;
+  flex-direction: row;
+  background-color: #8f8b8b;
+  border-radius: 5px;
+  margin: 10px 20px;
+  padding: 10px;
+  min-height: 200px;
+  flex-wrap: wrap
+}
+
+.deal-options1{
+  background: transparent;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  justify-content: space-evenly;
+  min-width: 300px;
+}
+
+.deal-options1 div{
+  margin-top:15px
+}
+
+.deal-options1 button{
+  margin-top:20px
+}
+.deal-options2{
+  background: white;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  flex:5;
+  border-radius: 5px;
+  justify-content: space-evenly;
+  min-width:160px
+}
+
+
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+.description{
+  background-color: #fff;
+  padding: 10px 0px;
+  border-radius: 5px;
+  margin: 10px;
+  flex:1;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+@media(max-width:500px){
+  .issue{
+    min-width: 200px
+  }
+}
+
+@media(min-width:600px){
+  .deal-options{
+    min-width: 540px;
+  }
 }
