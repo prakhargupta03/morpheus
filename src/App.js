@@ -3,6 +3,8 @@ import './App.css';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ClipboardIcon from 'react-clipboard-icon'
 import AddButton from './add.png'
+import {get} from 'axios';
+
 class App extends Component{
   constructor(props){
     super(props);
@@ -24,11 +26,38 @@ class App extends Component{
       lockStatus:true,
       satisfiedStatus:true,
       dealDoneStatus:false,
+      eth2inr:'',
+      eth2usd:'',
       description:'Receiver has to provide me with a flat for 8 months at Satya nagar, Delhi from 1 jan 2018 to 1 august 2018.'
     }
     this.onContractDetailsCopyClick = this.onContractDetailsCopyClick.bind(this);
     this.onDealDetailsCopyClick = this.onDealDetailsCopyClick.bind(this);    
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillMount(){
+    get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=INR,USD')
+    .then(({data})=>{
+      this.setState({
+        eth2inr:data.INR,
+        eth2usd:data.USD
+      })
+    })
+  }
+  componentDidMount() {
+    console.log('componentDidMount')
+    this.interval = setInterval(() => {
+      get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=INR,USD')
+      .then(({data})=>{
+        this.setState({
+          eth2inr:data.INR,
+          eth2usd:data.USD
+        })
+      })
+    }, 10000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
   onContractDetailsCopyClick(){
     this.setState({contractDetailsCopy: true});
@@ -59,6 +88,14 @@ class App extends Component{
               />
             </CopyToClipboard>
             {this.state.contractDetailsCopy&&<span style={{marginLeft:8,color:"black"}}>Copied</span>}
+            <br/>
+            <span style={{margin:'auto',background:'transparent',color:'white',padding:5,position:'relative',top:10}}>
+              <i className="fas fa-info-circle" style={{marginRight:5,fontSize:20,}}></i>
+              The Current Price of Ethereum is 
+                <span style={{color:'#2C3335',fontSize:18,margin:'auto 5px'}}> ₹ {this.state.eth2inr} </span>
+                 or 
+                <span style={{color:'#2C3335',fontSize:18,margin:'auto 5px'}}> $ {this.state.eth2usd}</span>                  
+            </span>
         </div>
 
         <div className="sender-receiver">
