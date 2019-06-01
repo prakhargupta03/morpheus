@@ -73,6 +73,7 @@ class App extends Component{
     this.setState({[event.target.name]: event.target.value});
   }
   render(){
+    var sizeOfCol = 30
     return (
       <div className="App">
         <div className="top-section">
@@ -206,8 +207,8 @@ class App extends Component{
               </button>
             </div>
             <div style={{width:5,height:230,background:'#fff',margin:'auto 5px',borderRadius:5}} className="hide1">
-              <div style={{width:'100%',height:'50%',background:'#FAC42F',borderRadius:5}}></div>
-              <div style={{width:'100%',height:'50%',background:'#FFF', borderRadius:5}}></div>
+              <div style={{width:'100%',height:sizeOfCol+'%',background:'#FAC42F',borderRadius:5}}></div>
+              <div style={{width:'100%',height:(100-sizeOfCol)+'%',background:'#FFF', borderRadius:5}}></div>
             </div>
             <div className="deal-options2">
               <div style={{display:'flex',flexDirection:'row',justifyContent:'space-around'}}>
